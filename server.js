@@ -1,12 +1,12 @@
 const express = require('express');
 const session = require('express-session');
 const bcrypt = require('bcryptjs');
-const { exec } = require('child_process');
 const path = require('path');
 const fs = require('fs');
 const chokidar = require('chokidar');
 const dotenv = require('dotenv');
 const showdown = require('showdown');
+const updatePosts = require('./updatePosts');
 const app = express();
 const port = 3000;
 
@@ -33,26 +33,16 @@ const users = [
 // Serve static files from the public directory
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Function to run the Python script and log output
-const runPythonScript = () => {
-    console.log('Running Python script...');
-    const script = exec('python posts.py', { cwd: __dirname });
 
-    script.stdout.on('data', (data) => {
-        console.log(`stdout: ${data}`);
-    });
-
-    script.stderr.on('data', (data) => {
-        console.error(`stderr: ${data}`);
-    });
-
-    script.on('close', (code) => {
-        console.log(`Python script exited with code ${code}`);
-    });
+const runUpdatePosts = () => {
+	try {
+		updatePosts();
+	} catch (err) {
+		console.error('Error updating psots:', err);
+	}
 };
 
-// Run the Python script on server start
-runPythonScript();
+runUpdatePosts();
 
 // Watch for changes in the blog/posts directory
 const watcher = chokidar.watch(path.join(__dirname, 'public', 'blog', 'posts'), {
@@ -61,17 +51,17 @@ const watcher = chokidar.watch(path.join(__dirname, 'public', 'blog', 'posts'), 
 
 watcher.on('add', (filePath) => {
     console.log(`File added: ${filePath}`);
-    runPythonScript();
+    runUpdatePosts();
 });
 
 watcher.on('change', (filePath) => {
     console.log(`File changed: ${filePath}`);
-    runPythonScript();
+    runUpdatePosts();
 });
 
 watcher.on('unlink', (filePath) => {
     console.log(`File removed: ${filePath}`);
-    runPythonScript();
+    runUpdatePosts();
 });
 
 // Middleware to redirect .html URLs to their clean versions
@@ -193,7 +183,7 @@ app.post('/create-post', requireAuth, (req, res) => {
             res.status(500).send('Error creating post');
         } else {
             console.log('Post created:', postPath);
-            runPythonScript();
+            runUpdatePosts();
             res.status(200).send('Post created successfully');
         }
     });
