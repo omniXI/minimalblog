@@ -1,5 +1,5 @@
 # minimalblog gruvbox
-## [DEMO SITE](https://minimalscreen.com/)
+## [DEMO SITE](https://demo.minimalscreen.com/)
 A simple, yet overcomplicated blog with a gruvbox theme.
 
 ## features
