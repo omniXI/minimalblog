@@ -1,5 +1,5 @@
 # minimalblog gruvbox
-
+## [DEMO SITE](https://minimalscreen.com/)
 A simple, yet overcomplicated blog with a gruvbox theme.
 
 ## features
@@ -14,6 +14,7 @@ A simple, yet overcomplicated blog with a gruvbox theme.
 
 - Node.js
 - npm
+- python3 (3.12.4)
 
 ### installation
 
