@@ -39,6 +39,21 @@ Change ADMIN_USERNAME & ADMIN_PASSWORD to your liking.
 - visit `http://localhost:3000` to see the application
 - create a blog post on `http://localhost:3000/create-post` (use your login credentials from .env file)
 
+## Pictures
+
+### Home page
+![](https://raw.githubusercontent.com/omniXI/minimalblog/main/images/home.png)
+
+### Blog page
+![](https://raw.githubusercontent.com/omniXI/minimalblog/main/images/blog.png)
+
+### Create post page
+![](https://raw.githubusercontent.com/omniXI/minimalblog/main/images/create-post.png)
+
+### About me page
+![](https://raw.githubusercontent.com/omniXI/minimalblog/main/images/about.png)
+
+
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/)
