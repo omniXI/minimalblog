@@ -1,0 +1,85 @@
+
+/* main css */
+body {
+    background-color: #282828;
+    color: #ebdbb2;
+    margin: 40px auto;
+    max-width: 650px;
+    line-height: 1.6;
+    font-size: 18px;
+    padding: 0 10px;
+    font-family: Arial, sans-serif;
+}
+h1, h2, h3 {
+    line-height: 1.2;
+    color: #fbf1c7;
+}
+header, section {
+    margin-bottom: 20px;
+}
+a {
+    color: #83a598;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+aside {
+    color: #928374;
+}
+ul {
+    padding-left: 20px;
+}
+ul li {
+    margin-bottom: 10px;
+}
+
+
+/* quote */
+blockquote {
+    margin: 1.5em 10px; /* Adjust margins to your preference */
+    padding: 0.5em 10px; /* Adjust padding to your preference */
+    border-left: 5px solid #458588; /* Gruvbox blue color */
+    background-color: #3c3836; /* Gruvbox background color */
+    color: #ebdbb2; /* Gruvbox text color */
+    quotes: "“" "”" "‘" "’"; /* Custom quotes */
+}
+
+blockquote:before {
+    color: #458588; /* Gruvbox blue color */
+    font-size: 2em;
+    line-height: 0.1em;
+    margin-right: 10px;
+    vertical-align: -0.4em;
+    content: open-quote;
+}
+
+blockquote:after {
+    color: #458588; /* Gruvbox blue color */
+    font-size: 2em;
+    line-height: 0.1em;
+    margin-left: 10px;
+    vertical-align: -0.4em;
+    content: close-quote;
+}
+
+blockquote p {
+    display: inline; /* Inline display to avoid extra margin on paragraphs inside block quotes */
+}
+
+
+/* Code Block */
+ code {
+    display: block;
+    padding: 10px; /* Adjust padding to your preference */
+    margin: 0.5em 0; /* Adjust margin to your preference */
+    border: 1px solid #928374; /* Gruvbox gray color */
+    background-color: #3c3836; /* Gruvbox background color */
+    color: #ebdbb2; /* Gruvbox text color */
+    overflow-x: auto; /* Add horizontal scroll if needed */
+    white-space: pre; /* Preserve whitespace */
+    font-family: 'Source Code Pro', monospace; /* Set font family to a monospace font */
+    font-size: 14px; /* Adjust font size to your preference */
+}
+
+

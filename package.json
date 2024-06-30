@@ -1,0 +1,22 @@
+{
+  "name": "minimalscreen",
+  "version": "0.0.1",
+  "description": "A simple blog application with authentication and Markdown-based post creation",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "gensecret": "node generateSecret.js"
+  },
+  "keywords": [],
+  "author": "minimal",
+  "license": "MIT",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "chokidar": "^3.6.0",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-session": "^1.18.0",
+    "marked": "^13.0.1",
+    "showdown": "^2.1.0"
+  }
+}

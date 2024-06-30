@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>minimalscreen - blog</title>
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+    <header>
+        <h1>Blog</h1>
+        <aside>Explore our latest posts.</aside>
+	<p><a href="../../">home</a> | <a href="./">blog</a> | <a href="/../../about">about</a> | <a href="/../../contact">contact</a></p>
+    </header>
+    <div id="blog-posts">
+        <!-- Blog posts will be injected here -->
+    </div>
+    <script>
+        fetch('./posts.json')
+            .then(response => response.json())
+            .then(posts => {
+                const postsContainer = document.getElementById('blog-posts');
+                posts.forEach(post => {
+                    const postElement = document.createElement('div');
+                    postElement.innerHTML = `
+			<h3>${post.title}</h3>
+			<aside>${post.excerpt}</aside>
+                        <a href="./posts/${post.path}">Read more</a>
+                    `;
+                    postsContainer.appendChild(postElement);
+                });
+            });
+    </script>
+</body>
+</html>

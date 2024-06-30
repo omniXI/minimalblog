@@ -1,0 +1,80 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>minimalscreen - editor</title>
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/simplemde.css">
+</head>
+<body>
+    <header>
+        <h1>Create a new blog post</h1>
+        <aside>you must be the owner</aside>
+        <nav>
+		<p><a href="/">home</a> | <a href="./blog/">blog</a> | <a href="./about">about</a> | <a href="./contact">contact</a></p>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <h2>Create a New Blog Post</h2>
+	    <a href="https://simplemde.com/markdown-guide">markdown guide <3</a>
+            <form id="blog-post-form">
+                <label for="title">Title:</label>
+                <input type="text" id="title" name="title" required>
+		<label for="subheader">Subheader:</label>
+		<input type="text" id="subheader" name"subheader" required>
+                <label for="content">Content:</label>
+                <textarea id="content" name="content"></textarea>
+                <button type="submit">Post</button>
+            </form>
+        </section>
+        <section>
+            <h2>Latest Blog Posts</h2>
+            <div id="blog-posts">
+                <!-- Blog posts will be injected here -->
+            </div>
+        </section>
+    </main>
+    <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+    <script>
+        const simplemde = new SimpleMDE({ element: document.getElementById("content") });
+
+        document.getElementById("blog-post-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+            const title = document.getElementById("title").value;
+	    const subheader = document.getElementById("subheader").value;
+            const content = simplemde.value();
+
+            fetch('/create-post', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ title, subheader, content })
+            }).then(response => {
+                if (response.ok) {
+                    alert('Post created successfully!');
+                    location.reload();
+                } else {
+                    alert('Error creating post');
+                }
+            });
+        });
+
+        fetch('/blog/posts.json')
+            .then(response => response.json())
+            .then(posts => {
+                const postsContainer = document.getElementById('blog-posts');
+                posts.forEach(post => {
+                    const postElement = document.createElement('div');
+                    postElement.innerHTML = `
+                        <p>${post.date} – <a href="./blog/posts/${post.path}">${post.title}</a></p>
+                    `;
+                    postsContainer.appendChild(postElement);
+                });
+            });
+    </script>
+</body>
+</html>
+
