@@ -14,7 +14,7 @@ A simple, yet overcomplicated blog with a gruvbox theme.
 
 - Node.js
 - npm
-- python
+- python3
 
 ### installation
 
