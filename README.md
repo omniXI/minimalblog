@@ -8,6 +8,13 @@ A simple, yet overcomplicated blog with a gruvbox theme.
 - user authentication for blog post creation
 - automatic post updates and directory watching
 
+**features that may or may not be added**
+- edit blog posts on site
+- easily change theme
+- tags and categories
+- rss feed
+- proper contact page
+
 ## setup
 
 ### prerequisities
