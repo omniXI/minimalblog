@@ -107,20 +107,18 @@ app.post('/login', (req, res) => {
     }
 });
 
-// Route to serve index without .html
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+app.get('/:page', (req, res, next) => {
+    if (['create-post'].includes(req.params.page)) {
+        return next();
+    }
+    const filePath = path.join(__dirname, 'public', `${req.params.page}.html`);
+    if (fs.existsSync(filePath)) {
+        res.sendFile(filePath);
+    } else {
+        res.status(404).sendFile(path.join(__dirname, 'public', '404.html'));
+    }
 });
 
-// Serve about without .html
-app.get('/about', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'about.html'));
-});
-
-// Serve contact without .html
-app.get('/contact', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'contact.html'));
-});
 
 // Serve blog main page without .html
 app.get('/blog', (req, res) => {
